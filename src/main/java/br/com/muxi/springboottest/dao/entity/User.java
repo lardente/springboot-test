@@ -1,4 +1,4 @@
-package br.com.muxi.springboottest.dao;
+package br.com.muxi.springboottest.dao.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +15,7 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+    private Boolean active;
 
     public String getFirstName() {
         return this.firstName;
@@ -30,6 +31,14 @@ public class User {
 
     public void setLastName(String lastname) {
         this.lastName = lastname;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override

@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @EnableAutoConfiguration
 public class userController {
 
-    @RequestMapping("/teste")
+    private String response;
+
+    @RequestMapping(value = "/teste", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    String home() {
-        return "Hello World!";
+    public String home() {
+
+        response = "Hello World!";
+        return response;
     }
 }
