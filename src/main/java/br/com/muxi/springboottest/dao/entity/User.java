@@ -1,20 +1,22 @@
 package br.com.muxi.springboottest.dao.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by lardente on 07/06/2017.
  */
 @Entity
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "active")
     private Boolean active;
 
     public String getFirstName() {
