@@ -4,6 +4,8 @@ import br.com.muxi.springboottest.dao.entity.User;
 import br.com.muxi.springboottest.dao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +26,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/1.0/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<User>> listAllUsers() {
-        List<User> users = (List<User>) userService.findAll();
-        if (users.isEmpty()) {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-            // You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+    @GetMapping(value = "/1.0/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<User> getAllUsers(Pageable pageable) {
+        Page<User> users = userService.findAll(pageable);
+        return users;
     }
 }
